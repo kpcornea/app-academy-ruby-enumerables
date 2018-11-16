@@ -1,3 +1,5 @@
+require "byebug"
+
 class Array
   def my_each(&prc)
     i = 0
@@ -39,8 +41,33 @@ class Array
     true
   end
 
+  def my_flatten
+    new_arr = []
+    byebug
+    self.my_each do |ele|
+      if ele.is_a?(Array)
+        new_arr += ele
+      else
+        new_arr << ele
+      end
+    end
+    byebug
+    return new_arr if new_arr.flattened?
+    new_arr.my_flatten
+  end
+
+  def flattened?
+    self.my_each do |ele|
+      return false if ele.is_a?(Array)
+    end
+    true
+  end
+
 end
 
+# b = [1, 2, [3, 4]]
 # p a = [1, 2, 3]
 # p a.my_reject { |num| num > 1 } # => [1]
 # p a.my_reject { |num| num == 4 } # => [1, 2, 3]
+
+ [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten
