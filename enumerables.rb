@@ -52,7 +52,7 @@ class Array
         new_arr << ele
       end
     end
-    
+
     return new_arr if new_arr.flattened?
     new_arr.my_flatten
   end
@@ -82,9 +82,19 @@ class Array
     new_arr
   end
 
+  def my_rotate(n=1)
+    new_arr = self.dup
 
+    if n > 0
+      (0...n).each { new_arr << new_arr.shift }
+    else
+      (0...n.abs).each { new_arr.unshift(new_arr.pop) }
+    end
 
+    new_arr
+  end
 
+  
 
 
 end
