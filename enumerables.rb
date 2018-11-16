@@ -1,5 +1,3 @@
-require "byebug"
-
 class Array
   def my_each(&prc)
     i = 0
@@ -113,16 +111,4 @@ class Array
     (self.length - 1).downto(0) { |i| new_arr << self[i] }
     new_arr
   end
-
-
 end
-
-# b = [1, 2, [3, 4]]
-# p a = [1, 2, 3]
-# p a.my_reject { |num| num > 1 } # => [1]
-# p a.my_reject { |num| num == 4 } # => [1, 2, 3]
-
- # [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten
- # a = [ 4, 5, 6 ]
- #  b = [ 7, 8, 9 ]
- #  [1, 2, 3].my_zip(a, b)

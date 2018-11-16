@@ -38,15 +38,23 @@ end
 
 
 def substrings(str)
+  new_arr = []
 
+  str.each_char.with_index do |char1, i|
+    sub_str = char1
+    new_arr << sub_str
+
+    str.each_char.with_index do |char2, j|
+      if j > i
+        sub_str += char2
+        new_arr << sub_str
+      end
+    end
+  end
+
+  new_arr
 end
 
 def subwords(word, dictionary)
-
+  substrings(word).select { |ele| dictionary.include?(ele) }
 end
-
-# load "iteration_exercises.rb"
-a = [3, 2, 1]
-a.bubble_sort!
-b = [10, 2, 15, 3, 37, 2, 55, 9]
-b.bubble_sort!
