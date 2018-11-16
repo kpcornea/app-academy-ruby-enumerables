@@ -10,9 +10,16 @@ class Array
     while true
       sorted = true if i == 0
 
-      if self[i] > self[i + 1]
-        self[i], self[i + 1] = self[i + 1], self[i]
-        sorted = false
+      if prc.nil?
+        if self[i] > self[i + 1]
+          self[i], self[i + 1] = self[i + 1], self[i]
+          sorted = false
+        end
+      else
+        if prc.call(self[i], self[i + 1]) == 1
+          self[i], self[i + 1] = self[i + 1], self[i]
+          sorted = false
+        end
       end
 
       i += 1
@@ -24,7 +31,7 @@ class Array
   end
 
   def bubble_sort(&prc)
-    self.dup.bubble_sort!
+    self.dup.bubble_sort!(&prc)
   end
 
 end
