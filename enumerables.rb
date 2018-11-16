@@ -5,6 +5,7 @@ class Array
     i = 0
     while i < self.length
       ele = self[i]
+      byebug
       prc.call(ele)
       i += 1
     end
@@ -43,7 +44,7 @@ class Array
 
   def my_flatten
     new_arr = []
-    byebug
+
     self.my_each do |ele|
       if ele.is_a?(Array)
         new_arr += ele
@@ -51,7 +52,7 @@ class Array
         new_arr << ele
       end
     end
-    byebug
+    
     return new_arr if new_arr.flattened?
     new_arr.my_flatten
   end
@@ -63,6 +64,29 @@ class Array
     true
   end
 
+  def my_zip(*args)
+    new_arr = []
+
+    self.each_with_index do |ele, i|
+      sub_arr = [ele]
+
+      j = 0
+      while j < args.length
+        sub_arr << args[j][i]
+        j += 1
+      end
+
+      new_arr << sub_arr
+    end
+
+    new_arr
+  end
+
+
+
+
+
+
 end
 
 # b = [1, 2, [3, 4]]
@@ -70,4 +94,7 @@ end
 # p a.my_reject { |num| num > 1 } # => [1]
 # p a.my_reject { |num| num == 4 } # => [1, 2, 3]
 
- [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten
+ # [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten
+ # a = [ 4, 5, 6 ]
+ #  b = [ 7, 8, 9 ]
+ #  [1, 2, 3].my_zip(a, b)
