@@ -94,7 +94,25 @@ class Array
     new_arr
   end
 
-  
+  def my_join(sep="")
+    str = ""
+
+    self.each_with_index do |ele, i|
+      if i == self.length - 1
+        str += ele
+      else
+        str += ele + sep
+      end
+    end
+
+    str
+  end
+
+  def my_reverse
+    new_arr = []
+    (self.length - 1).downto(0) { |i| new_arr << self[i] }
+    new_arr
+  end
 
 
 end
